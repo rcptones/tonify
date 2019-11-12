@@ -20,6 +20,7 @@
 		4911A87CB047D8A711F7DE4D /* libPods-tonify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F676B7BDED2D70F2C8EF99 /* libPods-tonify.a */; };
 		84D7230810923E00DA9567C0 /* libPods-tonifyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA555547F56EFD9A3D9B72F5 /* libPods-tonifyTests.a */; };
 		9BB03072C78B10CF8ECF9FDA /* libPods-tonify-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEF77B3879708EB70CB37A8 /* libPods-tonify-tvOS.a */; };
+		D723F481237A980400EA7E72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D723F480237A980400EA7E72 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		98F676B7BDED2D70F2C8EF99 /* libPods-tonify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tonify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A066CA842D9128DAB4C9F2AA /* Pods-tonifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tonifyTests.release.xcconfig"; path = "Target Support Files/Pods-tonifyTests/Pods-tonifyTests.release.xcconfig"; sourceTree = "<group>"; };
 		BA555547F56EFD9A3D9B72F5 /* libPods-tonifyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tonifyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D723F480237A980400EA7E72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAEF77B3879708EB70CB37A8 /* libPods-tonify-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tonify-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* tonify */ = {
 			isa = PBXGroup;
 			children = (
+				D723F480237A980400EA7E72 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -194,7 +197,6 @@
 				42394D09008957CF8BDE79E2 /* Pods-tonifyTests.debug.xcconfig */,
 				A066CA842D9128DAB4C9F2AA /* Pods-tonifyTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +310,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -338,6 +341,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				D723F481237A980400EA7E72 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,7 +639,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.homesound.tonify;
 				PRODUCT_NAME = tonify;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -654,7 +658,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.homesound.tonify;
 				PRODUCT_NAME = tonify;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

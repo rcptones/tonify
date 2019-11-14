@@ -8,7 +8,7 @@ const App = () => {
     <Provider store={store}>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, backgroundColor: 'green' }}>
-          <Text> Hello Ankit </Text>
+          <Text> Hello Tonify </Text>
         </View>
       </SafeAreaView>
     </Provider>

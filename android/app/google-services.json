@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "885478941018",
+    "firebase_url": "https://rcptriggerreceiver.firebaseio.com",
+    "project_id": "rcptriggerreceiver",
+    "storage_bucket": "rcptriggerreceiver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885478941018:android:9b48f3d5920c08e5bf5363",
+        "android_client_info": {
+          "package_name": "com.notification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885478941018-sfsjhlpd641va2gkdjuijirikc52qj9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZuJzZ7JaSeappVw-4M7ENul83CHucbbY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885478941018-sfsjhlpd641va2gkdjuijirikc52qj9p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "885478941018-qte9h6g5dn224ijf6g3oqm87tpqrt6k3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bmdpush.push"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885478941018:android:99ada53faaa87033bf5363",
+        "android_client_info": {
+          "package_name": "com.tonify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885478941018-sfsjhlpd641va2gkdjuijirikc52qj9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZuJzZ7JaSeappVw-4M7ENul83CHucbbY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885478941018-sfsjhlpd641va2gkdjuijirikc52qj9p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "885478941018-qte9h6g5dn224ijf6g3oqm87tpqrt6k3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bmdpush.push"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

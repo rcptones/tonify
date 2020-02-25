@@ -41,17 +41,17 @@ public class MainActivity extends ReactActivity {
         super.onCreate(savedInstanceState);
 
 
-        FirebaseInstanceId.getInstance().getInstanceId()
-            .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                @Override
-                public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                    if(task.isSuccessful()){
-                        String token = task.getResult().getToken();
-                        Log.d("MyTag", "new Token \n\n " + token);
-                        System.out.println("token" + token);
-                    }
-                }
-            });
+//        FirebaseInstanceId.getInstance().getInstanceId()
+//            .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+//                @Override
+//                public void onComplete(@NonNull Task<InstanceIdResult> task) {
+//                    if(task.isSuccessful()){
+//                        String token = task.getResult().getToken();
+//                        Log.d("MyTag", "new Token \n\n " + token);
+//                        System.out.println("token" + token);
+//                    }
+//                }
+//            });
         createNotificationChannel();
     }
 
@@ -61,6 +61,7 @@ public class MainActivity extends ReactActivity {
             String description = "MyChannelDesc";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel("CHANNEL_ID", name, importance);
+            channel.setSound(null, null);
             channel.setDescription(description);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);

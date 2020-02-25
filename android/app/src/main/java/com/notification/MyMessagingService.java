@@ -3,6 +3,7 @@ package com.notification;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -66,8 +67,10 @@ public class MyMessagingService extends FirebaseMessagingService {
 
     public void displayNotification(String soundFile){
 
-        Uri audioFileUri = Uri.parse("android.resource://com.notification/raw/" + "beep.mp3");
+//        Uri audioFileUri = Uri.parse("android.resource://com.notification/raw/" + soundFile);
+//        Uri audioFileUri = Uri.parse("android.resource:///com.notification/" + R.raw.cell);
 
+//        Log.i("### audioFileUri", audioFileUri.getPath());
 //        File file = new File(audioFileUri.getPath());
 //        if (file.exists()) {
 //            Log.i("FILEEXISTS", audioFileUri + " exists");
@@ -76,17 +79,19 @@ public class MyMessagingService extends FirebaseMessagingService {
 //        }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
+                .setDefaults(Notification.DEFAULT_ALL)
                 .setSmallIcon(R.drawable.ic_settings_system_daydream_black_24dp)
                 .setContentTitle("ZAPIER")
                 .setContentText("Alert from Zapier")
-//                .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true)
-                .setSound(audioFileUri);
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setAutoCancel(true);
+//                .setSound(audioFileUri);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(11326, builder.build());
 
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, getRawId(soundFile));
+        mediaPlayer.start();
     }
 
 
@@ -98,5 +103,39 @@ public class MyMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
+    }
+
+    public int getRawId(String filename) {
+        Uri audioFileUri;
+        switch (filename){
+            case "beep":
+                return R.raw.beep;
+//                audioFileUri = Uri.parse("android.resource:///com.notification/" + R.raw.beep);
+//                break;
+            case "cell":
+                return R.raw.cell;
+//                audioFileUri = Uri.parse("android.resource:///com.notification/" + R.raw.cell);
+//                break;
+            case "chime":
+                return R.raw.chime;
+//                audioFileUri = Uri.parse("android.resource:///com.notification/" + R.raw.chime);
+//                break;
+            case "digi":
+                return R.raw.digi;
+//                audioFileUri = Uri.parse("android.resource:///com.notification/" + R.raw.digi);
+//                break;
+            case "notify":
+                return R.raw.notify;
+//                audioFileUri = Uri.parse("android.resource:///com.notification/" + R.raw.notify);
+//                break;
+            case "vibe":
+                return R.raw.vibe;
+//                audioFileUri = Uri.parse("android.resource:///com.notification/" + R.raw.vibe);
+//                break;
+            default:
+                return R.raw.beep;
+//                audioFileUri = Uri.parse("android.resource:///com.notification/" + R.raw.beep);
+//                break;
+        }
     }
 }

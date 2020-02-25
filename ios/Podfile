@@ -37,7 +37,10 @@ target 'notification' do
   
   pod 'Firebase/Database'
   pod 'Firebase/Messaging'
-  
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Core'
+  pod 'GoogleAnalytics'
 
   target 'notificationTests' do
     inherit! :search_paths

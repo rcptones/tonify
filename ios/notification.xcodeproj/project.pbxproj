@@ -20,6 +20,14 @@
 		4F7F343D59BA65D81700BAC3 /* libPods-notification-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 304114BA06B394301341424C /* libPods-notification-tvOS.a */; };
 		9AC8FE3E38F820AD5FB19AF9 /* libPods-notification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9AFBA866B5161471A50D8E /* libPods-notification.a */; };
 		A21FFD8FAB3614095593D48B /* libPods-notificationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12A2F050E2FD9906A45B836 /* libPods-notificationTests.a */; };
+		D75AFEAB2408F9EF0033C9A4 /* chime.wav in Resources */ = {isa = PBXBuildFile; fileRef = D75AFEA32408F9EE0033C9A4 /* chime.wav */; };
+		D75AFEAC2408F9EF0033C9A4 /* notify.wav in Resources */ = {isa = PBXBuildFile; fileRef = D75AFEA42408F9EE0033C9A4 /* notify.wav */; };
+		D75AFEAD2408F9EF0033C9A4 /* vibe.wav in Resources */ = {isa = PBXBuildFile; fileRef = D75AFEA52408F9EE0033C9A4 /* vibe.wav */; };
+		D75AFEAE2408F9EF0033C9A4 /* cell1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D75AFEA62408F9EE0033C9A4 /* cell1.wav */; };
+		D75AFEAF2408F9EF0033C9A4 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D75AFEA72408F9EE0033C9A4 /* beep.mp3 */; };
+		D75AFEB02408F9EF0033C9A4 /* cell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D75AFEA82408F9EF0033C9A4 /* cell.mp3 */; };
+		D75AFEB12408F9EF0033C9A4 /* digi.wav in Resources */ = {isa = PBXBuildFile; fileRef = D75AFEA92408F9EF0033C9A4 /* digi.wav */; };
+		D75AFEB22408F9EF0033C9A4 /* beep1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D75AFEAA2408F9EF0033C9A4 /* beep1.wav */; };
 		D7E7088A24055184006A64C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7E7088924055184006A64C6 /* GoogleService-Info.plist */; };
 		D7E7088C2405696D006A64C6 /* NotificationActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7088B2405696D006A64C6 /* NotificationActivity.swift */; };
 		D7E7088E24056BD1006A64C6 /* NotificationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E7088D24056BD1006A64C6 /* NotificationActivity.m */; };
@@ -68,6 +76,15 @@
 		A85AC2409D70F368CEF5FB87 /* Pods-notification-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notification-tvOS.release.xcconfig"; path = "Target Support Files/Pods-notification-tvOS/Pods-notification-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		CBCB0DD37F747EEDD57C0222 /* libPods-notification-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-notification-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D39115BEB5D2B11D31C783CE /* Pods-notification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notification.debug.xcconfig"; path = "Target Support Files/Pods-notification/Pods-notification.debug.xcconfig"; sourceTree = "<group>"; };
+		D75AFEA22408F7620033C9A4 /* notification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = notification.entitlements; path = notification/notification.entitlements; sourceTree = "<group>"; };
+		D75AFEA32408F9EE0033C9A4 /* chime.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chime.wav; sourceTree = "<group>"; };
+		D75AFEA42408F9EE0033C9A4 /* notify.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notify.wav; sourceTree = "<group>"; };
+		D75AFEA52408F9EE0033C9A4 /* vibe.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = vibe.wav; sourceTree = "<group>"; };
+		D75AFEA62408F9EE0033C9A4 /* cell1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cell1.wav; sourceTree = "<group>"; };
+		D75AFEA72408F9EE0033C9A4 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
+		D75AFEA82408F9EF0033C9A4 /* cell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cell.mp3; sourceTree = "<group>"; };
+		D75AFEA92408F9EF0033C9A4 /* digi.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = digi.wav; sourceTree = "<group>"; };
+		D75AFEAA2408F9EF0033C9A4 /* beep1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep1.wav; sourceTree = "<group>"; };
 		D7E7088224054DC5006A64C6 /* notification-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "notification-Bridging-Header.h"; sourceTree = "<group>"; };
 		D7E7088924055184006A64C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D7E7088B2405696D006A64C6 /* NotificationActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationActivity.swift; sourceTree = "<group>"; };
@@ -132,6 +149,8 @@
 		13B07FAE1A68108700A75B9A /* notification */ = {
 			isa = PBXGroup;
 			children = (
+				D75AFEB324090EB40033C9A4 /* sounds */,
+				D75AFEA22408F7620033C9A4 /* notification.entitlements */,
 				D7E7088924055184006A64C6 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -206,6 +225,21 @@
 				5C2D31D6C68EFD4C97032F26 /* Pods-notificationTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D75AFEB324090EB40033C9A4 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D75AFEA72408F9EE0033C9A4 /* beep.mp3 */,
+				D75AFEAA2408F9EF0033C9A4 /* beep1.wav */,
+				D75AFEA82408F9EF0033C9A4 /* cell.mp3 */,
+				D75AFEA62408F9EE0033C9A4 /* cell1.wav */,
+				D75AFEA32408F9EE0033C9A4 /* chime.wav */,
+				D75AFEA92408F9EF0033C9A4 /* digi.wav */,
+				D75AFEA42408F9EE0033C9A4 /* notify.wav */,
+				D75AFEA52408F9EE0033C9A4 /* vibe.wav */,
+			);
+			name = sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,9 +387,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D75AFEAD2408F9EF0033C9A4 /* vibe.wav in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D75AFEB02408F9EF0033C9A4 /* cell.mp3 in Resources */,
+				D75AFEAF2408F9EF0033C9A4 /* beep.mp3 in Resources */,
+				D75AFEAC2408F9EF0033C9A4 /* notify.wav in Resources */,
+				D75AFEB22408F9EF0033C9A4 /* beep1.wav in Resources */,
+				D75AFEB12408F9EF0033C9A4 /* digi.wav in Resources */,
+				D75AFEAE2408F9EF0033C9A4 /* cell1.wav in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				D7E7088A24055184006A64C6 /* GoogleService-Info.plist in Resources */,
+				D75AFEAB2408F9EF0033C9A4 /* chime.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +709,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = notification/notification.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -695,6 +738,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = notification/notification.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

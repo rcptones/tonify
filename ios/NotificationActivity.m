@@ -11,6 +11,9 @@
 
 @interface RCT_EXTERN_MODULE(NotificationActivity, NSObject)
 
-RCT_EXTERN_METHOD(generateToken)
+//RCT_EXTERN_METHOD(generateToken)
+//RCT_EXTERN_METHOD(generateToken: (RCTPromiseResolveBlock)resolve (RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(generateToken: (RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 
 @end

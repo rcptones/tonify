@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 
 @objc(NotificationActivity)
-
 class NotificationActivity: NSObject, RCTBridgeModule {
   
   static func moduleName() -> String! {
@@ -18,17 +17,33 @@ class NotificationActivity: NSObject, RCTBridgeModule {
     
   }
   
+//  @objc
+//  func generateToken(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+//    InstanceID.instanceID().instanceID { (result, error) in
+//      if let error = error {
+//        print("### Error fetching remote instance ID: \(error)")
+//
+//      } else if let result = result {
+//        print("### Remote instance ID token: \(result.token)")
+//        resolve(result.token)
+//        //        self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+//      }
+//    }
+//    print("#### Token Will be generated here.")
+//  }
+  
   @objc
-  func generateToken() -> Void {
+  func generateToken(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
+  
+    
     InstanceID.instanceID().instanceID { (result, error) in
       if let error = error {
-        print("### Error fetching remote instance ID: \(error)")
+        print("Some error \(error)")
       } else if let result = result {
         print("### Remote instance ID token: \(result.token)")
-        //        self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+        resolve(result.token);
       }
     }
-    print("#### Token Will be generated here.")
   }
   
 }

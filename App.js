@@ -1,19 +1,17 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, {Component} from 'react';
+import {SafeAreaView, View, Text, AsyncStorage} from 'react-native';
+import firebase from 'firebase';
+import {firebaseConfig} from './fireabase.config';
+import {registerTokenToServer, fetchToken} from './utils/common.utils';
+import {DEVICE_TOKEN} from './constants/asyncstorage.constants';
+import {login} from './Auth/backend';
 
-import React, {Component} from 'react'
-import {SafeAreaView, View, Text, NativeModules, Platform} from 'react-native'
-import firebase from 'firebase'
-import {firebaseConfig} from './fireabase.config'
-import {registerTokenToServer, fetchToken} from './utils/common.utils'
+// Redux Imports
+import {Provider} from 'react-redux';
+import store from './store';
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig)
+  firebase.initializeApp(firebaseConfig);
 }
 
 class App extends Component {
@@ -22,54 +20,46 @@ class App extends Component {
     done: false,
   }
 
-  componentDidMount () {
-    fetchToken();
-  }
-
-  fakeLogin = async () => {
-    const credentials = {
-      email: 'ankitbaid11326@gmail.com',
-      password: 'abcd1234',
+  componentDidMount = async () => {
+    const status = await login();
+    if (status) {
+      await this.checkOrDeleteToken();
     }
-    let result = await fetch(`https://zapier001.herokuapp.com/api/login`, {
-      body: JSON.stringify(credentials),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    })
-
-    result = await result.json()
-    const {access_token} = result
-    this.setState(
-      {
-        token: access_token,
-      },
-      () => {
-        this.fetchTokenforAndorid()
-      },
-    )
   }
 
-  render () {
+  checkOrDeleteToken = async () => {
+    const result = await fetchToken();
+    if (result && result.status) {
+      const {token} = result;
+      const oldToken = await AsyncStorage.getItem(DEVICE_TOKEN);
+      if (!oldToken || oldToken !== token) {
+        // register new token to server
+        return registerTokenToServer(token);
+      }
+    }
+  }
+
+  render() {
     return (
-      <SafeAreaView style={{flex: 1}}>
-        <View
-          style={{
-            display: 'flex',
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          {!this.state.done ? (
-            <Text style={{fontSize: 24}}>Hello Android</Text>
-          ) : (
-            <Text style={{fontSize: 24}}>Registration Successful</Text>
-          )}
-        </View>
-      </SafeAreaView>
-    )
+      <Provider store={store}>
+        <SafeAreaView style={{flex: 1}}>
+          <View
+            style={{
+              display: 'flex',
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            {!this.state.done ? (
+              <Text style={{fontSize: 24}}>Hello Android</Text>
+            ) : (
+              <Text style={{fontSize: 24}}>Registration Successful</Text>
+            )}
+          </View>
+        </SafeAreaView>
+      </Provider>
+    );
   }
 }
 
-export default App
+export default App;

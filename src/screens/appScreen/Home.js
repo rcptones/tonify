@@ -32,9 +32,9 @@ export default class Home extends Component {
         return registerTokenToServer(token);
       }
     }
-  }
+  };
 
-  render () {
+  render() {
     return (
       <View
         style={{
@@ -45,8 +45,8 @@ export default class Home extends Component {
         }}>
         <Text style={{fontSize: 24}}>Registration Successful</Text>
       </View>
-    )
+    );
   }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

@@ -188,8 +188,8 @@ public class MyMessagingService extends FirebaseMessagingService {
         manager.notify(notificationId, notification);*/
     }
 
-    public void  playMusic(String soundFile) {
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, getRawId(soundFile));
+    public void playMusic(String soundFile) {
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, MyMessagingService.getRawId(soundFile));
         mediaPlayer.start();
     }
 
@@ -311,7 +311,7 @@ public class MyMessagingService extends FirebaseMessagingService {
         super.onNewToken(s);
     }
 */
-    public int getRawId(String filename) {
+    public static int getRawId(String filename) {
         Uri audioFileUri;
         switch (filename){
             case "beep":

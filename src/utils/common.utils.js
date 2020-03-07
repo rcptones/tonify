@@ -3,7 +3,7 @@ import {AUTH_TOKEN} from '../constants/asyncstorage.constants'
 
 export const registerTokenToServer = async token => {
   try {
-    const auth_token = await AsyncStorage.getItem(AUTH_TOKEN)
+    const auth_token = await AsyncStorage.getItem(AUTH_TOKEN);
     let result = await fetch(
       `https://zapier001.herokuapp.com/api/registertoken`,
       {
@@ -17,7 +17,7 @@ export const registerTokenToServer = async token => {
           Authorization: auth_token,
         },
       },
-    )
+    );
     result = await result.json();
     return {status: true, result};
   } catch (error) {
@@ -31,9 +31,14 @@ export const fetchToken = async () => {
    ***************/
   const {NotificationActivity} = NativeModules;
   try {
-    NotificationActivity.generateToken(token => {
+    if (Platform.OS === 'ios') {
+      const token = await NotificationActivity.generateToken();
       return {status: true, token};
-    });
+    } else {
+      NotificationActivity.generateToken(token => {
+        return {status: true, token};
+      });
+    }
   } catch (error) {
     return {status: false, error};
   }

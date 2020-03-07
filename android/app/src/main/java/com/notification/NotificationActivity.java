@@ -1,5 +1,6 @@
 package com.notification;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -40,6 +41,14 @@ public class NotificationActivity extends ReactContextBaseJavaModule {
                         }
                     }
                 });
+    }
+
+    @ReactMethod
+    public void playSound(String soundName) {
+
+        final MediaPlayer mediaPlayer = MediaPlayer.create(getReactApplicationContext(), MyMessagingService.getRawId(soundName));
+        mediaPlayer.start();
+
     }
 
     @NonNull

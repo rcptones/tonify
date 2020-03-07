@@ -1,9 +1,9 @@
-import {NativeModules, Platform, AsyncStorage} from 'react-native';
-import { AUTH_TOKEN } from '../constants/asyncstorage.constants';
+import {NativeModules, Platform, AsyncStorage} from 'react-native'
+import {AUTH_TOKEN} from '../constants/asyncstorage.constants'
 
-export const registerTokenToServer = async (token) => {
+export const registerTokenToServer = async token => {
   try {
-    const auth_token = await AsyncStorage.getItem(AUTH_TOKEN);
+    const auth_token = await AsyncStorage.getItem(AUTH_TOKEN)
     let result = await fetch(
       `https://zapier001.herokuapp.com/api/registertoken`,
       {
@@ -17,23 +17,24 @@ export const registerTokenToServer = async (token) => {
           Authorization: auth_token,
         },
       },
-    );
+    )
     result = await result.json();
     return {status: true, result};
   } catch (error) {
     return {status: false, error};
   }
-};
+}
 
 export const fetchToken = async () => {
-  /*************** 
+  /***************
    * I have defined a common native function [generateToken] to generate token in iOS and Android
    ***************/
   const {NotificationActivity} = NativeModules;
   try {
-    const token = await NotificationActivity.generateToken();
-    return {status: true, token};
+    NotificationActivity.generateToken(token => {
+      return {status: true, token};
+    });
   } catch (error) {
     return {status: false, error};
   }
-};
+}

@@ -1,65 +1,45 @@
-import React, {Component} from 'react';
-import {SafeAreaView, View, Text, AsyncStorage} from 'react-native';
-import firebase from 'firebase';
-import {firebaseConfig} from './fireabase.config';
-import {registerTokenToServer, fetchToken} from './utils/common.utils';
-import {DEVICE_TOKEN} from './constants/asyncstorage.constants';
-import {login} from './Auth/backend';
+import React, {Component} from 'react'
+import {SafeAreaView, View, Text, AsyncStorage} from 'react-native'
+import firebase from 'firebase'
+import {firebaseConfig} from './fireabase.config'
+
+// Navigation from react-navigation
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+// SCREENS
+import AuthTabNavigator from './src/screens/authScreen/TabNavigator';
+import Home from './src/screens/appScreen/Home';
 
 // Redux Imports
-import {Provider} from 'react-redux';
-import store from './store';
+import {Provider} from 'react-redux'
+import store from './src/store'
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig)
 }
+
+const Stack = createStackNavigator()
 
 class App extends Component {
-  state = {
-    token: null,
-    done: false,
-  }
-
-  componentDidMount = async () => {
-    const status = await login();
-    if (status) {
-      await this.checkOrDeleteToken();
-    }
-  }
-
-  checkOrDeleteToken = async () => {
-    const result = await fetchToken();
-    if (result && result.status) {
-      const {token} = result;
-      const oldToken = await AsyncStorage.getItem(DEVICE_TOKEN);
-      if (!oldToken || oldToken !== token) {
-        // register new token to server
-        return registerTokenToServer(token);
-      }
-    }
-  }
-
-  render() {
+  render () {
     return (
-      <Provider store={store}>
-        <SafeAreaView style={{flex: 1}}>
-          <View
-            style={{
-              display: 'flex',
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            {!this.state.done ? (
-              <Text style={{fontSize: 24}}>Hello Android</Text>
-            ) : (
-              <Text style={{fontSize: 24}}>Registration Successful</Text>
-            )}
-          </View>
-        </SafeAreaView>
-      </Provider>
-    );
+      <SafeAreaView style={{flex: 1}}>
+        <Provider store={store}>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false
+              }}
+            >
+              <Stack.Screen name='Auth' component={AuthTabNavigator} />
+              <Stack.Screen name='Home' component={Home} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </Provider>
+      </SafeAreaView>
+    )
   }
 }
 
-export default App;
+export default App

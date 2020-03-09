@@ -6,13 +6,20 @@ import {DEVICE_TOKEN} from '../../constants/asyncstorage.constants';
 import { login } from '../../Auth/backend';
 
 export default class Home extends Component {
+
   state = {
     token: null,
     done: false,
     loggedIn: false,
   };
 
+  componentWillMount(){
+    console.log("CWM: ", this.props);
+  }
+
   componentDidMount = async () => {
+    const {navigation, route} = this.props;  
+
     const status = await login();
     if (status) {
       this.setState({
@@ -48,5 +55,6 @@ export default class Home extends Component {
     );
   }
 }
+
 
 const styles = StyleSheet.create({});

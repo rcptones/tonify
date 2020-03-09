@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, NativeModules } from 'react-native'
+import {View, Text, TouchableOpacity, NativeModules} from 'react-native'
 
 class Sounds extends Component {
   constructor (props) {
@@ -9,26 +9,71 @@ class Sounds extends Component {
     }
   }
 
-  playSound = (soundName) => {
-    const {NotificationActivity} = NativeModules;
-    console.log("NativeModules", NotificationActivity);
-    NotificationActivity.playSound(soundName);
+  playSound = soundName => {
+    const {NotificationActivity} = NativeModules
+    console.log('NativeModules', NotificationActivity)
+    NotificationActivity.playSound(soundName)
+  }
+
+  setSoundForNotification = (soundName) => {
+    
   }
 
   render () {
     const {sounds} = this.state
-    let counter = 0;
+    let counter = 0
     const soundsArray = sounds.map(sound => {
       return (
-        <TouchableOpacity key={counter++} onPress={() => this.playSound(sound)}>
-          <View style={{backgroundColor: '#fff', padding: 10, marginTop: 10}}>
-            <Text> {sound} </Text>
+        <View
+          key={sound}
+          style={{
+            backgroundColor: '#fff',
+            marginTop: 10,
+            height: 100,
+            padding: 3,
+          }}>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+            }}>
+            <Text> {sound.toUpperCase()} </Text>
+            <TouchableOpacity
+              key={counter++}
+              onPress={() => this.playSound(sound)}>
+              <Text> {'Play'} </Text>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+          <View
+            style={{
+              flex: 1,
+              borderTopColor: '#000',
+              // borderTopWidth: 1,
+              // borderWidth: 1,
+              justifyContent: 'center',
+            }}>
+            <TouchableOpacity
+              key={counter++}
+              onPress={() => this.setSoundForNotification(sound)}>
+              <Text
+                style={{
+                  backgroundColor: '#c6c6c6',
+                  alignSelf: 'flex-start',
+                  padding: 10,
+                  borderRadius: 5,
+                }}>
+                {' '}
+                Make this notification sound{' '}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       )
     })
 
-    return <View style={{ padding: 10 }}>{soundsArray}</View>
+    return <View style={{padding: 10}}>{soundsArray}</View>
   }
 }
 

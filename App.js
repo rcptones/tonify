@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {SafeAreaView, View, Text, AsyncStorage} from 'react-native'
+import {SafeAreaView, Button, Text} from 'react-native'
 import firebase from 'firebase'
 import {firebaseConfig} from './fireabase.config'
 
@@ -16,6 +16,7 @@ import {Provider} from 'react-redux';
 import store from './src/store';
 
 import {AUTH, DRAWER} from './src/constants/navigation.constants';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig)
@@ -29,13 +30,21 @@ class App extends Component {
       <SafeAreaView style={{flex: 1}}>
         <Provider store={store}>
           <NavigationContainer>
-            <Stack.Navigator
-              screenOptions={{
-                headerShown: false
-              }}
-            >
-              <Stack.Screen name={AUTH} component={AuthTabNavigator} />
-              <Stack.Screen name={DRAWER} component={DrawerNavigator} />
+            <Stack.Navigator>
+              <Stack.Screen
+                name={AUTH} 
+                component={AuthTabNavigator} 
+                options={{
+                  headerShown:false
+                }} 
+              />
+              <Stack.Screen 
+                name={DRAWER}
+                component={DrawerNavigator} 
+                options={{
+                  headerShown:false
+                }} 
+              />
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>

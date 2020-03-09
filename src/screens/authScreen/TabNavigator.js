@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import React, {Component} from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { StackActions } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,8 +16,13 @@ export default class TabNavigator extends Component {
   componentDidMount() {
     const {navigation} = this.props;
 
+    //   navigation.navigate(DRAWER);
     setTimeout(() => {
-      navigation.navigate(DRAWER);
+      navigation.dispatch(
+        StackActions.replace(DRAWER, {
+          user: 'jane',
+        })
+      );
     }, 3000);
 
   }

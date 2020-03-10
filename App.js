@@ -40,30 +40,44 @@ import Login from './src/screens/authScreen/Login';
 // }
 
 class App extends Component {
-
   state = {
-    login: true
+    loggedIn: false,
   }
 
   componentDidMount() {
-    // const {login} = this.state;
-    // if (!login) {
-      
-    // }
-    console.log("CDM", this.props);
+    const {auth} = this.props;
+    if(auth && auth.isAuthenticated){
+      this.setState({
+        loggedIn: true
+      })
+    }
    }
 
    static getDerivedStateFromProps(nextProps, prevState) {
-    console.log('nextProps', nextProps);
-    return null;
+    const {auth} = nextProps;
+    if (auth && auth.isAuthenticated) {
+      return {login: true};
+    } else {
+      return null;
+    }
    }
 
+   componentDidUpdate(prevProps, prevState) {
+    const {auth} = this.props;
+    if(auth && auth.isAuthenticated && !this.state.loggedIn){
+      this.setState({
+        loggedIn: true
+      })
+    }
+   }
+   
+
   render () {
-    const { login } = this.state;
+    const { loggedIn } = this.state;
     return (
       <SafeAreaView style={{flex: 1}}>
           <NavigationContainer>
-            {login ?
+            {!loggedIn ?
             <Stack.Navigator>
               <Stack.Screen
                 name={AUTH} 

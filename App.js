@@ -1,35 +1,69 @@
-import React, {Component} from 'react'
-import {SafeAreaView, Button, Text} from 'react-native'
-import firebase from 'firebase'
-import {firebaseConfig} from './fireabase.config'
+import React, {Component} from 'react';
+import {SafeAreaView, Button, Text} from 'react-native';
+import firebase from 'firebase';
+import {firebaseConfig} from './fireabase.config';
+import { connect } from 'react-redux';
 
 // Navigation from react-navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // SCREENS
 import AuthTabNavigator from './src/screens/authScreen/TabNavigator';
 import DrawerNavigator from './src/screens/appScreen/DrawerNavigator';
 
 // Redux Imports
-import {Provider} from 'react-redux';
-import store from './src/store';
 
-import {AUTH, DRAWER} from './src/constants/navigation.constants';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
+
+import {AUTH, DRAWER, HOME} from './src/constants/navigation.constants';
+import { loginUser } from './src/actions/auth.actions';
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig)
+  firebase.initializeApp(firebaseConfig);
 }
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
+// const Tab = createBottomTabNavigator();
+
+import Login from './src/screens/authScreen/Login';
+// import Signup from './src/screens/authScreen/Signup';
+
+// const AuthNavigator = () => {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name={'LOGIN'} component={Login} />
+//       <Tab.Screen name={'SIGNUP'} component={Signup} />
+//     </Tab.Navigator>
+//   )
+// }
 
 class App extends Component {
+
+  state = {
+    login: true
+  }
+
+  componentDidMount() {
+    // const {login} = this.state;
+    // if (!login) {
+      
+    // }
+    console.log("CDM", this.props);
+   }
+
+   static getDerivedStateFromProps(nextProps, prevState) {
+    console.log('nextProps', nextProps);
+    return null;
+   }
+
   render () {
+    const { login } = this.state;
     return (
       <SafeAreaView style={{flex: 1}}>
-        <Provider store={store}>
           <NavigationContainer>
+            {login ?
             <Stack.Navigator>
               <Stack.Screen
                 name={AUTH} 
@@ -38,6 +72,8 @@ class App extends Component {
                   headerShown:false
                 }} 
               />
+            </Stack.Navigator>
+            : <Stack.Navigator>
               <Stack.Screen 
                 name={DRAWER}
                 component={DrawerNavigator} 
@@ -46,11 +82,18 @@ class App extends Component {
                 }} 
               />
             </Stack.Navigator>
+            }
           </NavigationContainer>
-        </Provider>
       </SafeAreaView>
     )
   }
 }
 
-export default App
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(
+  mapStateToProps,
+  {loginUser},
+)(App);

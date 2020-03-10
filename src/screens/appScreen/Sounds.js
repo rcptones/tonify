@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, NativeModules} from 'react-native'
+import {View, Text, TouchableOpacity, NativeModules, FlatList, StyleSheet} from 'react-native'
 
 class Sounds extends Component {
   constructor (props) {
@@ -19,62 +19,60 @@ class Sounds extends Component {
     
   }
 
-  render () {
-    const {sounds} = this.state
-    let counter = 0
-    const soundsArray = sounds.map(sound => {
-      return (
-        <View
-          key={sound}
-          style={{
-            backgroundColor: '#fff',
-            marginTop: 10,
-            height: 100,
-            padding: 3,
-          }}>
-          <View
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-            }}>
-            <Text> {sound.toUpperCase()} </Text>
-            <TouchableOpacity
-              key={counter++}
-              onPress={() => this.playSound(sound)}>
-              <Text> {'Play'} </Text>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              borderTopColor: '#000',
-              // borderTopWidth: 1,
-              // borderWidth: 1,
-              justifyContent: 'center',
-            }}>
-            <TouchableOpacity
-              key={counter++}
-              onPress={() => this.setSoundForNotification(sound)}>
-              <Text
-                style={{
-                  backgroundColor: '#c6c6c6',
-                  alignSelf: 'flex-start',
-                  padding: 10,
-                  borderRadius: 5,
-                }}>
-                {' '}
-                Make this notification sound{' '}
-              </Text>
-            </TouchableOpacity>
-          </View>
+  CreateItem = (sound) => {
+    return (
+      <View key={sound} style={styles.card}>
+        <View style={styles.cardTop}>
+          <Text> {`${sound}`.toUpperCase()} </Text>
+          <TouchableOpacity onPress={() => this.playSound(sound)}>
+            <Text> {'Play'} </Text>
+          </TouchableOpacity>
         </View>
-      )
-    })
+        <View style={styles.cardBottom}>
+          <TouchableOpacity onPress={() => this.setSoundForNotification(sound)}>
+            <Text style={styles.makeNotification}> Make this notification sound </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
 
-    return <View style={{padding: 10}}>{soundsArray}</View>
+  render () {
+    const {sounds} = this.state;
+    return (
+      <FlatList data={sounds} renderItem={({item}) => this.CreateItem(item)} />
+    );
+
+    // return <View style={{padding: 10}}>{soundsArray}</View>
   }
 }
 
-export default Sounds
+
+export default Sounds;
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#fff',
+    marginTop: 10,
+    height: 100,
+    padding: 3,
+  },
+  cardTop: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  cardBottom: {
+    flex: 1,
+    borderTopColor: '#000',
+    justifyContent: 'center',
+  },
+  makeNotification: {
+    backgroundColor: '#c6c6c6',
+    alignSelf: 'flex-start',
+    padding: 10,
+    borderRadius: 5,
+  },
+})
+

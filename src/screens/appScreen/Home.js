@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, AsyncStorage} from 'react-native';
+import {StackActions} from '@react-navigation/native';
+import { NavigationActions } from 'react-navigation';
 
 import {registerTokenToServer, fetchToken} from '../../utils/common.utils';
 import {DEVICE_TOKEN} from '../../constants/asyncstorage.constants';
-import { login } from '../../Auth/backend';
 
 export default class Home extends Component {
 
@@ -13,20 +14,24 @@ export default class Home extends Component {
     loggedIn: false,
   };
 
-  componentWillMount(){
-    console.log("CWM: ", this.props);
-  }
 
   componentDidMount = async () => {
     const {navigation, route} = this.props;  
 
-    const status = await login();
-    if (status) {
-      this.setState({
-        loggedIn: true,
-      });
-      await this.checkOrDeleteToken();
-    }
+    // navigation.dispatch(
+    //   StackActions.replace('Home', {
+    //     user: 'jane',
+    //   })
+    // );
+
+
+    // const status = await login();
+    // if (status) {
+    //   this.setState({
+    //     loggedIn: true,
+    //   });
+      // await this.checkOrDeleteToken();
+    // }
   }
 
   checkOrDeleteToken = async () => {

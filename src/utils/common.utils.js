@@ -1,5 +1,34 @@
 import {NativeModules, Platform, AsyncStorage} from 'react-native'
-import {AUTH_TOKEN} from '../constants/asyncstorage.constants'
+import {AUTH_TOKEN} from '../constants/asyncstorage.constants';
+import { BASE_URL } from '../constants/api.constants';
+
+// export const loginUser = async (email, password) => {
+//   const loginurl = `${BASE_URL}/login?email=${email}&password=${password}`;
+//   console.log(loginurl);
+
+//   const result = await fetch(loginurl, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+
+//   const {status} = result;
+//   if (status == '200') {
+//     const data = await result.json();
+//     const {access_token} = data;
+//     return {status: true, token: access_token};
+//   }
+
+//   if (status == 404) {
+//     return {status: false, message: 'Credentials not working'}
+//   }
+
+//   return {
+//     status: false,
+//     message: 'Something is not right, Please try after sometime'
+//   }
+// }
 
 export const registerTokenToServer = async token => {
   try {

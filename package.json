@@ -17,6 +17,7 @@
     "@react-navigation/stack": "^5.1.1",
     "firebase": "^7.8.2",
     "react": "16.9.0",
+    "react-logger": "^1.1.0",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "^1.6.0",
     "react-native-reanimated": "^1.7.0",
@@ -25,6 +26,7 @@
     "react-navigation": "^4.2.2",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {

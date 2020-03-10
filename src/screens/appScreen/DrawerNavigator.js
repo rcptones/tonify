@@ -15,7 +15,6 @@ import {HOME, PROFILE, SOUNDS} from '../../constants/navigation.constants';
 const Stack = createStackNavigator();
 
 const HomeScreen = ({ navigation }) => {
-  console.log("HomeStack", navigation);
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} 
@@ -30,7 +29,6 @@ const HomeScreen = ({ navigation }) => {
 };
 
 const ProfileScreen = ({navigation}) => {
-  console.log("ProfileScreen", navigation);
   return (
     <Stack.Navigator>
       <Stack.Screen name="Profile" component={Profile} 
@@ -45,7 +43,6 @@ const ProfileScreen = ({navigation}) => {
 };
 
 const SoundScreen = ({navigation}) => {
-  console.log("ProfileScreen", navigation);
   return (
     <Stack.Navigator>
       <Stack.Screen name="Profile" component={Sounds} 
@@ -60,7 +57,6 @@ const SoundScreen = ({navigation}) => {
 };
 
 function HanmurgerMenu({navigation}){
-  console.log("navigation", navigation);
   return (
     <TouchableOpacity
       style={{ padding: 5 }}

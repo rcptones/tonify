@@ -8,7 +8,7 @@ export const login = async (
 ) => {
   try {
     let result = await fetch(
-      `${BASE_URL}/${LOGIN_URL}?email=${email}&password=${password}`,
+      `${LOGIN_URL}?email=${email}&password=${password}`,
       {
         headers: {
           'Content-Type': 'application/json',

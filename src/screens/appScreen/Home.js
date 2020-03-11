@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, AsyncStorage} from 'react-native';
+import {Text, StyleSheet, View, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
-import {registerTokenToServer, fetchToken} from '../../utils/common.utils';
-import {DEVICE_TOKEN} from '../../constants/asyncstorage.constants';
 import { generateToken } from '../../actions/firebase.actions';
+import { TOKEN_REGISTRATION_URL } from '../../constants/api.constants';
 
 class Home extends Component {
 
@@ -15,25 +14,73 @@ class Home extends Component {
   };
 
   componentDidMount = async () => {
-    console.log("props", this.props);
     const {generateToken} = this.props;
+    console.log("CDM Happened");
     generateToken();
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log("nextProps", nextProps);
     const {token} = nextProps.firebaseReducer;
+    console.log("getDerivedStateFromProps Happened");
     if (token) {
-      return {token}
+      return {token};
     }
     return null;
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.firebaseReducer.token !== this.props.firebaseReducer.token){
-      // make an api call to register token
+    console.log("componentDidUpdate Happened");
+    const {token: oldToken} = prevProps.firebaseReducer;
+    const {token: newToken} = this.props.firebaseReducer;
+    /**
+     * TODO 
+     */
+    // if(oldToken == null){
+    //   // Register it for first time
+    //   return
+    // }
+
+    /**
+     * TODO 
+     */
+    // if(oldToken !== newToken){
+    //   // Update the token
+    //   return
+    // }
+
+    console.log("oldToken", oldToken)
+    console.log("newToken", newToken);
+
+    if (oldToken !== newToken) {
+      console.log("\n\n inside", this.props);
+      this.registerToken(newToken);
     }
    }
+
+  registerToken = async (token) => {
+    console.log("\n\n registerToken");
+    const {token: authToken} = this.props.auth;
+    const body = {
+      platform: Platform.OS == 'ios' ? 'ios' : 'android',
+      token,
+    };
+
+    try {
+      let result = await fetch(TOKEN_REGISTRATION_URL, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authToken,
+        },
+        body: JSON.stringify(body),
+        method: 'POST',
+      });
+      console.log("\n\n result", result);
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
+
+  updateToken = () => {};
 
   render() {
     return (
@@ -50,16 +97,14 @@ class Home extends Component {
   }
 }
 
-
 const styles = StyleSheet.create({});
 
 const mapStateToProps = state => ({
   firebaseReducer: state.firebaseReducer,
+  auth: state.auth,
 });
-
 
 export default connect(
   mapStateToProps,
   {generateToken},
 )(Home);
-

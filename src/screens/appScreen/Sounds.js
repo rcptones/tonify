@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, NativeModules, FlatList, StyleSheet} from 'react-native'
+import {View, Text, TouchableOpacity, NativeModules, FlatList, StyleSheet} from 'react-native';
+import { connect } from 'react-redux';
+import { SAVE_NOTIFICATION_SOUND } from '../../constants/api.constants';
 
 class Sounds extends Component {
   constructor (props) {
@@ -15,8 +17,22 @@ class Sounds extends Component {
     NotificationActivity.playSound(soundName)
   }
 
-  setSoundForNotification = (soundName) => {
-    
+  setSoundForNotification = async (soundName) => {
+    const {token: authToken} = this.props.auth;
+    const body = {
+      sound: soundName,
+    };
+
+    let result = await fetch(SAVE_NOTIFICATION_SOUND, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: authToken,
+      },
+      body: JSON.stringify(body),
+      method: 'POST',
+    });
+    console.log("result", result);
+
   }
 
   CreateItem = (sound) => {
@@ -49,8 +65,11 @@ class Sounds extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
 
-export default Sounds;
+export default connect(mapStateToProps, {})(Sounds);
 
 const styles = StyleSheet.create({
   card: {

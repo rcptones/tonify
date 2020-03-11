@@ -1,5 +1,6 @@
 import {GENERATE_TOKEN} from './types';
-import {NativeModules, Platform, AsyncStorage} from 'react-native'
+import {NativeModules, Platform, } from 'react-native';
+import { TOKEN_REGISTRATION_URL } from '../constants/api.constants';
 
 export const generateToken = () => async dispatch => {
   /***************

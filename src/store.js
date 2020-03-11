@@ -10,7 +10,7 @@ import rootReducer from './reducers/index';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'firebaseReducer'],
 };
 
 const middleware = [thunk, logger];

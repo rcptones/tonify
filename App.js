@@ -7,17 +7,13 @@ import { connect } from 'react-redux';
 // Navigation from react-navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // SCREENS
 import AuthTabNavigator from './src/screens/authScreen/TabNavigator';
 import DrawerNavigator from './src/screens/appScreen/DrawerNavigator';
 
-// Redux Imports
 
-
-
-import {AUTH, DRAWER, HOME} from './src/constants/navigation.constants';
+import {AUTH, DRAWER} from './src/constants/navigation.constants';
 import { loginUser } from './src/actions/auth.actions';
 
 if (!firebase.apps.length) {
@@ -25,19 +21,6 @@ if (!firebase.apps.length) {
 }
 
 const Stack = createStackNavigator();
-// const Tab = createBottomTabNavigator();
-
-import Login from './src/screens/authScreen/Login';
-// import Signup from './src/screens/authScreen/Signup';
-
-// const AuthNavigator = () => {
-//   return (
-//     <Tab.Navigator>
-//       <Tab.Screen name={'LOGIN'} component={Login} />
-//       <Tab.Screen name={'SIGNUP'} component={Signup} />
-//     </Tab.Navigator>
-//   )
-// }
 
 class App extends Component {
   state = {
@@ -66,7 +49,7 @@ class App extends Component {
     const {auth} = this.props;
     if(auth && auth.isAuthenticated && !this.state.loggedIn){
       this.setState({
-        loggedIn: true
+        loggedIn: auth.isAuthenticated
       })
     }
    }

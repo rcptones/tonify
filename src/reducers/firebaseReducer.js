@@ -1,16 +1,14 @@
-import {SET_CURRENT_USER} from '../actions/types';
+import {GENERATE_TOKEN, CLEAR_ERRORS} from '../actions/types';
 
 const initialState = {
-  isAuthenticated: false,
   token: null,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case SET_CURRENT_USER:
+    case GENERATE_TOKEN:
       return {
         ...state,
-        isAuthenticated: action.payload != null ? true : false,
         token: action.payload,
       };
     default:

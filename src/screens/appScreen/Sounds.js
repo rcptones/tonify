@@ -37,13 +37,15 @@ class Sounds extends Component {
     )
   }
 
-  render () {
-    const {sounds} = this.state;
+  render() {
+  const {sounds} = this.state;
     return (
-      <FlatList data={sounds} renderItem={({item}) => this.CreateItem(item)} />
+      <FlatList
+        data={sounds}
+        renderItem={({item, index}) => this.CreateItem(item, index)}
+        keyExtractor={(item) => `${Math.random()}`}
+      />
     );
-
-    // return <View style={{padding: 10}}>{soundsArray}</View>
   }
 }
 

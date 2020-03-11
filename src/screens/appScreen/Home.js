@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, AsyncStorage} from 'react-native';
-import {StackActions} from '@react-navigation/native';
-import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import {registerTokenToServer, fetchToken} from '../../utils/common.utils';
 import {DEVICE_TOKEN} from '../../constants/asyncstorage.constants';
+import { generateToken } from '../../actions/firebase.actions';
 
-export default class Home extends Component {
+class Home extends Component {
 
   state = {
     token: null,
@@ -14,37 +14,26 @@ export default class Home extends Component {
     loggedIn: false,
   };
 
-
   componentDidMount = async () => {
-    const {navigation, route} = this.props;  
-
-    // navigation.dispatch(
-    //   StackActions.replace('Home', {
-    //     user: 'jane',
-    //   })
-    // );
-
-
-    // const status = await login();
-    // if (status) {
-    //   this.setState({
-    //     loggedIn: true,
-    //   });
-      // await this.checkOrDeleteToken();
-    // }
+    console.log("props", this.props);
+    const {generateToken} = this.props;
+    generateToken();
   }
 
-  checkOrDeleteToken = async () => {
-    const result = await fetchToken();
-    if (result && result.status) {
-      const {token} = result;
-      const oldToken = await AsyncStorage.getItem(DEVICE_TOKEN);
-      if (!oldToken || oldToken !== token) {
-        // register new token to server
-        return registerTokenToServer(token);
-      }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log("nextProps", nextProps);
+    const {token} = nextProps.firebaseReducer;
+    if (token) {
+      return {token}
     }
-  };
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.firebaseReducer.token !== this.props.firebaseReducer.token){
+      // make an api call to register token
+    }
+   }
 
   render() {
     return (
@@ -63,3 +52,14 @@ export default class Home extends Component {
 
 
 const styles = StyleSheet.create({});
+
+const mapStateToProps = state => ({
+  firebaseReducer: state.firebaseReducer,
+});
+
+
+export default connect(
+  mapStateToProps,
+  {generateToken},
+)(Home);
+

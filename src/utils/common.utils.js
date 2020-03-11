@@ -30,29 +30,29 @@ import { BASE_URL } from '../constants/api.constants';
 //   }
 // }
 
-export const registerTokenToServer = async token => {
-  try {
-    const auth_token = await AsyncStorage.getItem(AUTH_TOKEN);
-    let result = await fetch(
-      `https://zapier001.herokuapp.com/api/registertoken`,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          token,
-          platform: Platform.OS === 'ios' ? 'ios' : 'android',
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: auth_token,
-        },
-      },
-    );
-    result = await result.json();
-    return {status: true, result};
-  } catch (error) {
-    return {status: false, error};
-  }
-}
+// export const registerTokenToServer = async token => {
+//   try {
+//     const auth_token = await AsyncStorage.getItem(AUTH_TOKEN);
+//     let result = await fetch(
+//       `https://zapier001.herokuapp.com/api/registertoken`,
+//       {
+//         method: 'POST',
+//         body: JSON.stringify({
+//           token,
+//           platform: Platform.OS === 'ios' ? 'ios' : 'android',
+//         }),
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Authorization: auth_token,
+//         },
+//       },
+//     );
+//     result = await result.json();
+//     return {status: true, result};
+//   } catch (error) {
+//     return {status: false, error};
+//   }
+// }
 
 export const fetchToken = async () => {
   /***************

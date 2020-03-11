@@ -12,26 +12,12 @@ class Login extends Component {
     password: 'abcd1234'
   }
 
-  componentDidMount() {
-    // this.login();
-  }
-
-  // login = async () => {
-  //   const {navigation} = this.props;
-  //   console.log("navigation", navigation);
-  //   const result = await loginUser('ankitbaid11326@gmail.com', 'abcd1234');
-  //   console.log("result", result);
-  //   if (result.status) {
-  //     const {token} = result;
-  //     await AsyncStorage.setItem(AUTH_TOKEN, token);
-  //     // navigation.navigate('DRAWER');
-  //   }
-  // }
+  componentDidMount() {}
 
   handleLogin = () => {
     // console.log("props", this.props);
     const {loginUser} = this.props;
-    loginUser("ankitbaid11326@gmail.com", 'abcd1234');
+    loginUser("ankitbaid11326@gmail.com", 'abcd1234')
   }
 
   render() {

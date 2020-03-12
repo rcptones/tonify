@@ -15,13 +15,11 @@ class Home extends Component {
 
   componentDidMount = async () => {
     const {generateToken} = this.props;
-    console.log("CDM Happened");
     generateToken();
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const {token} = nextProps.firebaseReducer;
-    console.log("getDerivedStateFromProps Happened");
     if (token) {
       return {token};
     }
@@ -29,7 +27,6 @@ class Home extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("componentDidUpdate Happened");
     const {token: oldToken} = prevProps.firebaseReducer;
     const {token: newToken} = this.props.firebaseReducer;
     /**
@@ -48,9 +45,6 @@ class Home extends Component {
     //   return
     // }
 
-    console.log("oldToken", oldToken)
-    console.log("newToken", newToken);
-
     if (oldToken !== newToken) {
       console.log("\n\n inside", this.props);
       this.registerToken(newToken);
@@ -58,7 +52,6 @@ class Home extends Component {
    }
 
   registerToken = async (token) => {
-    console.log("\n\n registerToken");
     const {token: authToken} = this.props.auth;
     const body = {
       platform: Platform.OS == 'ios' ? 'ios' : 'android',
@@ -74,7 +67,7 @@ class Home extends Component {
         body: JSON.stringify(body),
         method: 'POST',
       });
-      console.log("\n\n result", result);
+
     } catch (error) {
       console.log('error', error);
     }

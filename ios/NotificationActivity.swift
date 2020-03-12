@@ -13,6 +13,8 @@ import AVFoundation
 @objc(NotificationActivity)
 class NotificationActivity: NSObject, RCTBridgeModule {
   
+  var audioPlayer = AVAudioPlayer()
+  
   static func moduleName() -> String! {
     return "NotificationActivity"
     
@@ -47,10 +49,8 @@ class NotificationActivity: NSObject, RCTBridgeModule {
   }
 
   @objc
-  func playSound(_ fileName: String) -> Void {
-
-    let soundFile = NSURL(fileURLWithPath: Bundle.main.path(forResource: fileName, ofType: "mp3")!)
-    var audioPlayer = AVAudioPlayer()
+  func playSound(_ soundName: String) -> Void {
+    let soundFile = getSoundName(filename: soundName)
     
     do{
       audioPlayer = try AVAudioPlayer(contentsOf: soundFile as URL)
@@ -60,6 +60,27 @@ class NotificationActivity: NSObject, RCTBridgeModule {
     audioPlayer.prepareToPlay()
 
     audioPlayer.play() 
+  }
+  
+  func getSoundName(filename: String) -> NSURL {
+    
+    switch filename {
+    case "beep":
+      return NSURL(fileURLWithPath: Bundle.main.path(forResource: "beep", ofType: "mp3")!);
+    case "cell":
+      return NSURL(fileURLWithPath: Bundle.main.path(forResource: "cell", ofType: "mp3")!);
+    case "chime":
+      return NSURL(fileURLWithPath: Bundle.main.path(forResource: "chime", ofType: "wav")!);
+    case "digi":
+      return NSURL(fileURLWithPath: Bundle.main.path(forResource: "digi", ofType: "wav")!);
+    case "notify":
+      return NSURL(fileURLWithPath: Bundle.main.path(forResource: "notify", ofType: "wav")!);
+    case "vibe":
+      return NSURL(fileURLWithPath: Bundle.main.path(forResource: "vibe", ofType: "wav")!);
+    default:
+      return NSURL(fileURLWithPath: Bundle.main.path(forResource: "beep", ofType: "wav")!);
+    }
+    
   }
   
 }

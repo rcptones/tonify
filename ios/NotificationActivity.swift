@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import AVFoundation
 
 @objc(NotificationActivity)
 class NotificationActivity: NSObject, RCTBridgeModule {
@@ -35,7 +36,6 @@ class NotificationActivity: NSObject, RCTBridgeModule {
   @objc
   func generateToken(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
   
-    
     InstanceID.instanceID().instanceID { (result, error) in
       if let error = error {
         print("Some error \(error)")
@@ -44,6 +44,22 @@ class NotificationActivity: NSObject, RCTBridgeModule {
         resolve(result.token);
       }
     }
+  }
+
+  @objc
+  func playSound(_ fileName: String) -> Void {
+
+    let soundFile = NSURL(fileURLWithPath: Bundle.main.path(forResource: fileName, ofType: "mp3")!)
+    var audioPlayer = AVAudioPlayer()
+    
+    do{
+      audioPlayer = try AVAudioPlayer(contentsOf: soundFile as URL)
+    } catch let error {
+      print("\(error)")
+    }
+    audioPlayer.prepareToPlay()
+
+    audioPlayer.play() 
   }
   
 }

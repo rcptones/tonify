@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Button, Text} from 'react-native';
+import {SafeAreaView, Button, Text, View} from 'react-native';
 import firebase from 'firebase';
 import {firebaseConfig} from './fireabase.config';
 import { connect } from 'react-redux';
@@ -20,7 +20,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator(); 
 
 class App extends Component {
   state = {

@@ -1,4 +1,4 @@
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {AUTH_TOKEN} from '../constants/asyncstorage.constants';
 import {BASE_URL, LOGIN_URL} from '../constants/api.constants';
 

@@ -15,5 +15,6 @@
 //RCT_EXTERN_METHOD(generateToken: (RCTPromiseResolveBlock)resolve (RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(generateToken: (RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(playSound: (NSString *)fileName)
 
 @end

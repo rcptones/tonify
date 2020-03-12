@@ -42,6 +42,10 @@ target 'notification' do
   pod 'Firebase/Core'
   pod 'GoogleAnalytics'
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
   target 'notificationTests' do
     inherit! :search_paths
     # Pods for testing

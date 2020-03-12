@@ -9,18 +9,18 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {SAVE_NOTIFICATION_SOUND} from '../../constants/api.constants';
+import { sounds } from '../../constants/soundNames.constants';
 
 class Sounds extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sounds: ['beep', 'cell', 'chime', 'digi', 'notify', 'vibe'],
+      sounds
     };
   };
 
   playSound = soundName => {
     const {NotificationActivity} = NativeModules;
-    console.log('NativeModules', NotificationActivity);
     NotificationActivity.playSound(soundName);
   }
 
@@ -43,13 +43,13 @@ class Sounds extends Component {
     }
   }
 
-  CreateItem = sound => {
+  CreateItem = ({id, name, fullName}) => {
     return (
-      <View key={sound} style={styles.card}>
+      <View key={id} style={styles.card}>
         <View style={styles.cardTop}>
-          <Text> {`${sound}`.toUpperCase()} </Text>
+          <Text> {`${name}`.toUpperCase()} </Text>
           <TouchableOpacity
-          onPress={() => this.playSound(sound)}
+          onPress={() => this.playSound(name)}
           style={{
             backgroundColor: "#32CD32",
             padding: 10,
@@ -59,7 +59,7 @@ class Sounds extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.cardBottom}>
-          <TouchableOpacity onPress={() => this.setSoundForNotification(sound)}>
+          <TouchableOpacity onPress={() => this.setSoundForNotification(fullName)}>
             <Text style={styles.makeNotification}> Make this notification sound </Text>
           </TouchableOpacity>
         </View>
@@ -73,7 +73,7 @@ class Sounds extends Component {
       <View style={{padding: 10}}>
         <FlatList
           data={sounds}
-          renderItem={({item, index}) => this.CreateItem(item, index)}
+          renderItem={({item}) => this.CreateItem(item)}
           keyExtractor={(item) => `${Math.random()}`}
         />
       </View>

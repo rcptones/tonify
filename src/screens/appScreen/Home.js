@@ -46,7 +46,6 @@ class Home extends Component {
     // }
 
     if (oldToken !== newToken) {
-      console.log("\n\n inside", this.props);
       this.registerToken(newToken);
     }
    }

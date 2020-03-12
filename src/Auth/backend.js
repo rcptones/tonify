@@ -19,7 +19,6 @@ export const login = async (
 
     if (result && result.status == 200) {
       result = await result.json();
-      console.log('result', result);
       const {access_token} = result;
       await AsyncStorage.setItem(AUTH_TOKEN, access_token);
     }
